@@ -9,19 +9,16 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
-class RecursoAdmin extends AbstractAdmin
+class EditorialAdmin extends AbstractAdmin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('isbn')
-            ->add('titulo')
-            ->add('resumen')
-            ->add('totalpag')
-            ->add('tipo')
-            ->add('codeditorial', 'entity', array('class'=>'Admin\AdminBundle\Entity\Editorial'))
-          // ...
+
+            ->add('nombre')
+
+            // ...
         ;
     }
 
@@ -29,12 +26,7 @@ class RecursoAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('isbn')
-            ->add('titulo')
-            ->add('resumen')
-            ->add('totalpag')
-            ->add('tipo')
-            ->add('codeditorial')
+            ->add('nombre')
         ;
     }
 
@@ -42,12 +34,7 @@ class RecursoAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('isbn')
-            ->add('titulo')
-            ->add('resumen')
-            ->add('totalpag')
-            ->add('tipo')
-            ->addIdentifier('codeditorial', 'entity', array('class'=>'Admin\AdminBundle\Entity\Editorial'))
+            ->add('nombre')
         ;
     }
 
@@ -55,12 +42,7 @@ class RecursoAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('isbn')
-            ->add('titulo')
-            ->add('resumen')
-            ->add('totalpag')
-            ->add('tipo')
-            ->add('codeditorial')
+            ->add('nombre')
         ;
     }
 }

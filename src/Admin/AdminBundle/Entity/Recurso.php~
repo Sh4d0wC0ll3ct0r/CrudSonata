@@ -1,0 +1,70 @@
+<?php
+
+namespace Admin\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Recurso
+ *
+ * @ORM\Table(name="recurso", indexes={@ORM\Index(name="codEditorial", columns={"codEditorial"})})
+ * @ORM\Entity
+ */
+class Recurso
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ISBN", type="integer", nullable=false)
+     */
+    private $isbn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=50, nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resumen", type="string", length=255, nullable=false)
+     */
+    private $resumen;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="totalPag", type="integer", nullable=false)
+     */
+    private $totalpag;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=30, nullable=false)
+     */
+    private $tipo;
+
+    /**
+     * @var \Editorial
+     *
+     * @ORM\ManyToOne(targetEntity="Editorial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="codEditorial", referencedColumnName="codigo")
+     * })
+     */
+    private $codeditorial;
+
+
+}

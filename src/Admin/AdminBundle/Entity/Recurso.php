@@ -7,54 +7,65 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Recurso
  *
- * @ORM\Table(name="recurso")
- * @ORM\Entity(repositoryClass="Admin\AdminBundle\Repository\RecursoRepository")
+ * @ORM\Table(name="recurso", indexes={@ORM\Index(name="codEditorial", columns={"codEditorial"})})
+ * @ORM\Entity
  */
 class Recurso
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="ISBN", type="integer")
+     * @ORM\Column(name="ISBN", type="integer", nullable=false)
      */
-    private $iSBN;
+    private $isbn;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="titulo", type="string", length=50)
+     * @ORM\Column(name="titulo", type="string", length=50, nullable=false)
      */
     private $titulo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="resumen", type="string", length=255)
+     * @ORM\Column(name="resumen", type="string", length=255, nullable=false)
      */
     private $resumen;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="totalPag", type="integer")
+     * @ORM\Column(name="totalPag", type="integer", nullable=false)
      */
-    private $totalPag;
+    private $totalpag;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tipo", type="string", length=30)
+     * @ORM\Column(name="tipo", type="string", length=30, nullable=false)
      */
     private $tipo;
+
+    /**
+     * @var \Editorial
+     *
+     * @ORM\ManyToOne(targetEntity="Editorial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="codEditorial", referencedColumnName="codigo")
+     * })
+     */
+    private $codeditorial;
+
 
 
     /**
@@ -68,26 +79,26 @@ class Recurso
     }
 
     /**
-     * Set iSBN
+     * Set isbn
      *
-     * @param integer $iSBN
+     * @param integer $isbn
      * @return Recurso
      */
-    public function setISBN($iSBN)
+    public function setIsbn($isbn)
     {
-        $this->iSBN = $iSBN;
+        $this->isbn = $isbn;
 
         return $this;
     }
 
     /**
-     * Get iSBN
+     * Get isbn
      *
      * @return integer 
      */
-    public function getISBN()
+    public function getIsbn()
     {
-        return $this->iSBN;
+        return $this->isbn;
     }
 
     /**
@@ -137,26 +148,26 @@ class Recurso
     }
 
     /**
-     * Set totalPag
+     * Set totalpag
      *
-     * @param integer $totalPag
+     * @param integer $totalpag
      * @return Recurso
      */
-    public function setTotalPag($totalPag)
+    public function setTotalpag($totalpag)
     {
-        $this->totalPag = $totalPag;
+        $this->totalpag = $totalpag;
 
         return $this;
     }
 
     /**
-     * Get totalPag
+     * Get totalpag
      *
      * @return integer 
      */
-    public function getTotalPag()
+    public function getTotalpag()
     {
-        return $this->totalPag;
+        return $this->totalpag;
     }
 
     /**
@@ -180,5 +191,28 @@ class Recurso
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    /**
+     * Set codeditorial
+     *
+     * @param \Admin\AdminBundle\Entity\Editorial $codeditorial
+     * @return Recurso
+     */
+    public function setCodeditorial(\Admin\AdminBundle\Entity\Editorial $codeditorial = null)
+    {
+        $this->codeditorial = $codeditorial;
+
+        return $this;
+    }
+
+    /**
+     * Get codeditorial
+     *
+     * @return \Admin\AdminBundle\Entity\Editorial 
+     */
+    public function getCodeditorial()
+    {
+        return $this->codeditorial;
     }
 }
